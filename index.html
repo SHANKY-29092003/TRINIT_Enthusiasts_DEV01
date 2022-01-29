@@ -1,0 +1,59 @@
+<!DOCTYPE html>  
+<html>
+<body>
+
+<script>  
+var elemid;
+function allowDrop(ev) {ev.preventDefault();}  
+function drag(ev) {elemid = ev.target.id; ev.dataTransfer.setData("text/html", ev.target.id);}  
+function drop(ev) {  
+ev.preventDefault(); 
+//alert(elemid) ;
+if(elemid=="btn"){
+    var data = ev.dataTransfer.getData("text/html");  
+var button = document. createElement("button");
+button.innerText="button";
+ev.target.appendChild(button); 
+}
+if(elemid=="txt"){
+    var data = ev.dataTransfer.getData("text/html");  
+    var input = document.createElement("input");
+    input.setAttribute("type", "text");
+    ev.target.appendChild(input); 
+}
+
+if(elemid=="lbl"){
+    var data = ev.dataTransfer.getData("text/html");  
+    var label = document.createElement("label");
+    label.setAttribute("type", "text");
+    label.innerText="Label";
+    ev.target.appendChild(label); 
+} else if(elemid=="p"){
+    var data = ev.dataTransfer.getData("text/html");  
+    var x = document.createElement("P");
+    var t = document.createTextNode("This is a paragraph.");
+    x.appendChild(t);
+    ev.target.appendChild(x); 
+
+} else {}
+ 
+}  
+</script>  
+<p style="font-size: 18px;color: blue;font-weight: bold;">Drag the required elements into the rectangle:</p>  
+ 
+<table >
+<tr><td><input type="button" value="btn" id="btn" draggable="true" ondragstart="drag(event)"/></td>
+<td><input type="button" value="Text" id="txt" draggable="true" ondragstart="drag(event)"/></td>
+<td><input type="button" value="Label" id="lbl" draggable="true" ondragstart="drag(event)"/></td>
+<td><input type="button" value = "P" id="p" draggable="true" ondragstart="drag(event)"/></td></tr>
+
+
+</table>
+<!-- <img id="drag1" src="images/javatpoint.png" alt="javatpoint image"   
+draggable="true" ondragstart="drag(event)"/>  -->
+
+<div id="div1" style="width:70%;height:90px;padding:2%;border:1px solid #aaaaaa;overflow-y: auto;"   
+ondrop="drop(event)" ondragover="allowDrop(event)" ></div> 
+
+</body>  
+</html> 
